@@ -31,6 +31,10 @@ $(document).ready(function () {
             }
         })
     })
+    $('#toDoList').on('click', '.completeButton', function () {
+        console.log('Complete button was clicked!')
+    })
+    
 });
 
 function getTasks() {
@@ -50,8 +54,15 @@ function displayTasks(tasksArray) {
     for (var i = 0; i < tasksArray.length; i++) {
         var task = tasksArray[i];
         var $tasksDiv = $('<div></div>');
+        if (task.complete === true){
+            var taskStatus = "Complete"
+        }
+        else {
+            var taskStatus = "Incomplete"
+        }
         $tasksDiv.data('id', task.id);
-        $tasksDiv.append(task.task)
+        $tasksDiv.append(task.task);
+        $tasksDiv.append('<br> <strong> Task status: </strong>' + taskStatus);
         $tasksDiv.append('<button class="completeButton">Complete</button>');
         $tasksDiv.append('<button class="deleteButton">Delete</button>')
         $('#toDoList').prepend($tasksDiv);

@@ -28,7 +28,7 @@ router.post('/', function (req, res) {
 			console.log('Error connecting to database', errorConnectingToDatabase);
 			res.sendStatus(500);
 		} else {
-			client.query('INSERT INTO tasklist (task) VALUES ($1);', [req.body.task], function (errorMakingQuery, result) {
+			client.query('INSERT INTO tasklist (task, complete) VALUES ($1, false);', [req.body.task], function (errorMakingQuery, result) {
 				done();
 				if (errorMakingQuery) {
 					console.log('Error making database query', errorMakingQuery);
