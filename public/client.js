@@ -5,15 +5,23 @@ $(document).ready(function () {
     getTasks();
     $('#addTaskButton').on('click', function () {
         console.log('addTaskButton was clicked')
-    })
-    var taskInput = $('#taskInput').val();
-    var inputObject = {
-        task: taskInput
-    }
-
+        var taskInput = $('#taskInput').val();
+        var inputObject = {
+            task: taskInput
+        };
+        $.ajax({
+            method: 'POST',
+            url: '/task',
+            data: inputObject,
+            success: function (response) {
+                console.log(response);
+                getTasks();
+            }
+        })
+    });
 })
 
-function getTasks(){
+function getTasks() {
     $.ajax({
         method: 'GET',
         url: '/task',
@@ -28,12 +36,12 @@ function displayTasks(tasksArray) {
     $('#toDoList').empty(); // clears all tasks currently on DOM
 
     for (var i = 0; i < tasksArray.length; i++) {
-        var task = tasksArray[i]; 
-        var $tasksDiv = $('<div></div>'); 
+        var task = tasksArray[i];
+        var $tasksDiv = $('<div></div>');
         $tasksDiv.data('id', task.id);
         $tasksDiv.append(task.task)
-        $tasksDiv.append('<button class="completeButton">Complete</button>'); 
+        $tasksDiv.append('<button class="completeButton">Complete</button>');
         $tasksDiv.append('<button class="deleteButton">Delete</button>')
-        $('#toDoList').prepend($tasksDiv); 
+        $('#toDoList').prepend($tasksDiv);
     }
 }
