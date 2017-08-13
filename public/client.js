@@ -17,9 +17,21 @@ $(document).ready(function () {
                 console.log(response);
                 getTasks();
             }
-        })
+        });
     });
-})
+    $('#toDoList').on('click', '.deleteButton', function () {
+        console.log('Delete button was clicked!')
+        var taskId = $(this).parent().data().id;
+        $.ajax({
+            method: 'DELETE',
+            url: '/task/' + taskId,
+            success: function (response) {
+                console.log(response);
+                getTasks();
+            }
+        })
+    })
+});
 
 function getTasks() {
     $.ajax({
