@@ -4,3 +4,22 @@
 .falseDiv {
     background-color: blue;
 }
+#taskFields {
+    background-color: burlywood;
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 5px;
+    text-align: center;
+}
+#mainHeader{
+    margin: auto;
+    width: 50%;
+    padding: 10px; 
+    text-align: center; 
+}
+#toDoList{
+    border: 3px solid green;
+    margin: auto;
+    width: 75%;
+}
