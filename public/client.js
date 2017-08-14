@@ -31,7 +31,7 @@ $(document).ready(function () {
             }
         })
     })
-    
+
     $('#toDoList').on('click', '.completeButton', function () {
         console.log('Complete button was clicked!');
         var taskId = $(this).parent().data().id; //a number
@@ -42,6 +42,7 @@ $(document).ready(function () {
                 getTasks();
             }
         })
+        $(this).parent().css('background-color', 'red')
     })
 
 });
@@ -62,12 +63,14 @@ function displayTasks(tasksArray) {
 
     for (var i = 0; i < tasksArray.length; i++) {
         var task = tasksArray[i];
-        var $tasksDiv = $('<div></div>');
+
         if (task.complete === true) {
             var taskStatus = "Complete"
+            var $tasksDiv = $('<div class = "trueDiv"></div>');
         } else {
             var taskStatus = "Incomplete"
-        }
+            var $tasksDiv = $('<div class = "falseDiv"></div>');
+        }   
         $tasksDiv.data('id', task.id);
         $tasksDiv.append(task.task);
         $tasksDiv.append('<br> <strong> Task status: </strong>' + taskStatus);
