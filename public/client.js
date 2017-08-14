@@ -31,10 +31,19 @@ $(document).ready(function () {
             }
         })
     })
-    $('#toDoList').on('click', '.completeButton', function () {
-        console.log('Complete button was clicked!')
-    })
     
+    $('#toDoList').on('click', '.completeButton', function () {
+        console.log('Complete button was clicked!');
+        var taskId = $(this).parent().data().id; //a number
+        $.ajax({
+            method: 'PUT',
+            url: '/task/' + taskId,
+            success: function (response) {
+                getTasks();
+            }
+        })
+    })
+
 });
 
 function getTasks() {
@@ -54,10 +63,9 @@ function displayTasks(tasksArray) {
     for (var i = 0; i < tasksArray.length; i++) {
         var task = tasksArray[i];
         var $tasksDiv = $('<div></div>');
-        if (task.complete === true){
+        if (task.complete === true) {
             var taskStatus = "Complete"
-        }
-        else {
+        } else {
             var taskStatus = "Incomplete"
         }
         $tasksDiv.data('id', task.id);

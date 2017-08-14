@@ -66,4 +66,25 @@ router.delete('/:id', function (req, res) {
 
 });
 
+// router.put('/:id', function (req, res) {
+// 	var textId = req.params.id;
+// 	pool.connect(function (errorConnectingToDatabase, client, done) {
+// 		if (errorConnectingToDatabase) {
+// 			console.log('Error connecting to database', errorConnectingToDatabase);
+// 			res.sendStatus(500);
+// 		} else {
+// 			client.query('UPDATE tasklist SET complete= ' + true +  'WHERE id=$1;', [taskId],
+// 				function (errorMakingQuery, result) {
+// 					done();
+// 					if (errorMakingQuery) {
+// 						console.log('Error making database query', errorMakingQuery);
+// 						res.sendStatus(500);
+// 					} else {
+// 						res.sendStatus(200);
+// 					}
+// 				});
+// 		}
+// 	});
+// });
+
 module.exports = router;
